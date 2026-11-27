@@ -18,7 +18,7 @@ export function MeetingSearch() {
       params.delete("query");
     }
 
-    router.replace(`${pathname}?${params.toString()}`);
+    router.push(`${pathname}?${params.toString()}`);
   }, 300);
 
   return (
@@ -30,6 +30,7 @@ export function MeetingSearch() {
         Search meetings
       </label>
       <input
+        key={searchParams.get("query") ?? ""}
         id="meeting-search"
         type="search"
         placeholder="Search by speaker, leader, or meeting type..."
