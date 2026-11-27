@@ -1,0 +1,140 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Install Neon serverless",
+			"type": "shell",
+			"command": "npm.cmd install @neondatabase/serverless",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Install Vercel CLI",
+			"type": "shell",
+			"command": "npm.cmd install -g vercel",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Verify Vercel CLI",
+			"type": "shell",
+			"command": "vercel.cmd --version",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Link Vercel project",
+			"type": "shell",
+			"command": "vercel.cmd link --yes --project sacrament-meeting",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Pull Vercel environment",
+			"type": "shell",
+			"command": "vercel.cmd env pull .env.local --environment production --yes",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Verify environment keys",
+			"type": "shell",
+			"command": "Get-Content .env.local | ForEach-Object { if ($_ -match '^([^=]+)=(.*)$') { if ($Matches[2] -eq '[SENSITIVE]') { \"$($Matches[1])=[SENSITIVE]\" } else { \"$($Matches[1])=<present>\" } } }",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "List Vercel environment names",
+			"type": "shell",
+			"command": "vercel.cmd env ls",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Create meetings table",
+			"type": "shell",
+			"command": "npm.cmd run db:create-meetings",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Diagnose database environment keys",
+			"type": "shell",
+			"command": "node --env-file=.env.local --input-type=module -e \"console.log(Object.keys(process.env).filter(k => k.includes('DATABASE_URL') || k.includes('POSTGRES_URL')).join(','))\"",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Install use-debounce",
+			"type": "shell",
+			"command": "npm.cmd install use-debounce",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Lint project",
+			"type": "shell",
+			"command": "npm.cmd run lint",
+			"isBackground": false,
+			"problemMatcher": [
+				"$eslint-stylish"
+			]
+		},
+		{
+			"label": "Build project",
+			"type": "shell",
+			"command": "npm.cmd run build",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Clear Next cache",
+			"type": "shell",
+			"command": "Remove-Item -Recurse -Force .next",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Start development server",
+			"type": "shell",
+			"command": "npm.cmd run dev",
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Verify meetings routes",
+			"type": "shell",
+			"command": "curl.exe -i http://localhost:3000/api/meetings/abc",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Verify meetings API",
+			"type": "shell",
+			"command": "curl.exe -i http://localhost:3000/api/meetings",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check Git status",
+			"type": "shell",
+			"command": "git --no-pager status --short --branch",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Commit Week 3 work",
+			"type": "shell",
+			"command": "git add .; git diff --cached --stat; git commit -m 'W3: database, route groups, search, pagination' -m 'Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>'",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Push peer review branch",
+			"type": "shell",
+			"command": "git push origin peer-code-review",
+			"isBackground": false,
+			"problemMatcher": []
+		}
+	]
+}

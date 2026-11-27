@@ -1,0 +1,9 @@
+export default function EditMeetingPage() {
+  return (
+    <main className="mx-auto w-full max-w-6xl px-6 py-10">
+      <h1 className="text-3xl font-bold text-[#283618]">
+        Edit Meeting — Coming in Week 04
+      </h1>
+    </main>
+  );
+}

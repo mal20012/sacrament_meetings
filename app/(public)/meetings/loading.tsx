@@ -1,10 +1,6 @@
 export default function MeetingsLoading() {
   return (
-    <div
-      role="status"
-      aria-live="polite"
-      className="space-y-5"
-    >
+    <div role="status" aria-live="polite" className="space-y-5">
       <span className="sr-only">Loading meeting information...</span>
       <div className="h-10 w-64 animate-pulse rounded-lg bg-[#e7dcc1]" />
       <div className="grid gap-5 md:grid-cols-2">

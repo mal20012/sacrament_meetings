@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { connection } from "next/server";
-import { getMeetings } from "../../../lib/meetings-db";
+import { getMeetingsByDate } from "../../../../lib/meetings-db";
 
 function formatLocalDate(date: Date): string {
   const year = date.getFullYear();
@@ -15,7 +15,7 @@ export default async function CurrentMeetingPage() {
   const sunday = new Date();
   sunday.setDate(sunday.getDate() - sunday.getDay());
 
-  const meeting = getMeetings(formatLocalDate(sunday))[0];
+  const meeting = (await getMeetingsByDate(formatLocalDate(sunday)))[0];
   if (!meeting) {
     redirect("/meetings");
   }
